@@ -16,8 +16,10 @@ model = Word2Vec.load("data/skills_word2vec.model")
 # Load the Parquet file
 jobpostDF = pd.read_parquet("data/jobpostDF_subset.parquet")
 
+# Yirang commented out below
 # Define the set of skills of interest
 # skills_of_interest = ["python", "sql", "machine", "learning", "analysis"]
+# Yirang commented out above
 
 # Yirang added below
 resume_path = "test_resume/example_resume.pdf"
