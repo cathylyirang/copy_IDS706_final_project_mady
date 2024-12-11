@@ -4,7 +4,8 @@ DOCKER_ID_USER = ag826
 
 install:
 	pip install --upgrade pip  &&\
-	pip install -r requirements.txt
+	pip install -r requirements.txt  &&\
+	pip install --upgrade awscli botocore
 
 format:
 	black *.py #format all files	
@@ -29,7 +30,7 @@ build:
 
 # Run the Docker container
 run:
-	docker run -p 5000:5000 $(IMAGE_NAME)
+	docker run -d -p 5001:5001 -e API_KEY=$(API_KEY) $(IMAGE_NAME)
 
 # Remove the Docker image
 clean:
@@ -50,7 +51,7 @@ login:
 	docker login -u ${DOCKER_ID_USER}
 
 
-docker: build run clean image_show push login
+docker: build push
 
 all: install format lint test generate_and_push
 
